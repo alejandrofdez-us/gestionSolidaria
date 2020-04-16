@@ -58,12 +58,47 @@
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('Salir') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
+
+                                    <a class="dropdown-item" href="{{ route('demands.index') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('demands-form').submit();">
+                                        {{ __('Demandas') }}
+                                    </a>
+
+                                    <form id="demands-form" action="{{ route('demands.index') }}" method="GET" style="display: none;">
+                                        @csrf
+                                    </form>
+
+                                    @if(Auth::user()->userType =='demandante')
+                                        <a class="dropdown-item" href="{{ route('myDemands') }}"
+                                           onclick="event.preventDefault();
+                                                         document.getElementById('myDemands-form').submit();">
+                                            {{ __('Mis demandas') }}
+                                        </a>
+
+                                        <form id="myDemands-form" action="{{ route('myDemands') }}" method="GET" style="display: none;">
+                                            @csrf
+                                        </form>
+                                    @endif
+
+                                    @if(Auth::user()->userType =='voluntario')
+
+                                        <a class="dropdown-item" href="{{ route('myCPDemands') }}"
+                                           onclick="event.preventDefault();
+                                                         document.getElementById('myCPDemands-form').submit();">
+                                            {{ __('Demandas en mi zona') }}
+                                        </a>
+
+                                        <form id="myCPDemands-form" action="{{ route('myCPDemands') }}" method="GET" style="display: none;">
+                                            @csrf
+                                        </form>
+                                    @endif
                                 </div>
                             </li>
                         @endguest

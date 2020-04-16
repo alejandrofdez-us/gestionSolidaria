@@ -26,7 +26,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
 
-            //atributes de las clases hijas
+            //atributos de las clases hijas Demandante
             $table->string('address')->nullable();
 
             //atributo para diferenciar el tipo de usuario

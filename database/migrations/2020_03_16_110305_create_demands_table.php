@@ -24,8 +24,7 @@ class CreateDemandsTable extends Migration
             $table->date('validity')->nullable();
 
             $table->unsignedBigInteger('petitioner_id');
-            $table->unsignedBigInteger('volunteer_id');
-
+            $table->unsignedBigInteger('volunteer_id')->nullable();
 
             $table->foreign('petitioner_id')->references('id')->on('users');
             $table->foreign('volunteer_id')->references('id')->on('users');
