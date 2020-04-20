@@ -76,8 +76,6 @@ class DemandController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request);
-
         $this->validate($request, [
             'description' => ['required', 'string', 'max:255'],
             'demandType' => ['required', 'string', 'in:pasearMascota,trasladoMedico,compraSupermercado,sacarBasura,compraFarmacia,otros']
@@ -104,7 +102,7 @@ class DemandController extends Controller
     {
         $demanda = Demand::find($id);
 
-        return view('demands/show',['demands'=>$demanda]);
+        return view('demands/show',['demanda'=>$demanda]);
     }
 
     /**
@@ -115,7 +113,9 @@ class DemandController extends Controller
      */
     public function edit($id)
     {
-        //
+        $demanda = Demand::find($id);
+
+        return view('demands/edit',['demanda'=>$demanda]);
     }
 
     /**
@@ -127,7 +127,19 @@ class DemandController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'description' => ['required', 'string', 'max:255'],
+            'demandType' => ['required', 'string', 'in:pasearMascota,trasladoMedico,compraSupermercado,sacarBasura,compraFarmacia,otros']
+        ]);
+
+        $demanda = Demand::find($id);
+        $demanda->fill($request->all());
+
+        $demanda->save();
+
+        flash('Demanda modificada correctamente');
+
+        return redirect()->route('myDemands');
     }
 
     /**
@@ -138,6 +150,10 @@ class DemandController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $demanda = Demand::find($id);
+        $demanda->delete();
+        flash('Demanda borrada correctamente');
+
+        return redirect()->route('myDemands');
     }
 }

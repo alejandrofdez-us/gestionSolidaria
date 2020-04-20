@@ -18,6 +18,7 @@
                             <tr>
                                 <th>Descripción</th>
                                 <th>Tipo de demanda</th>
+                                <th>Fecha de caducidad</th>
                                 <th>Fecha de aceptación</th>
                                 <th>Fecha de realización</th>
                                 <th colspan="2">Acciones</th>
@@ -29,6 +30,7 @@
                                 <tr>
                                     <td>{{ $demand->description }}</td>
                                     <td>{{ $demand->demandType }}</td>
+                                    <td>{{ $demand->validity}}</td>
                                     <td>{{ $demand->accepted}}</td>
                                     <td>{{ $demand->satisfied}}</td>
                                     <td>

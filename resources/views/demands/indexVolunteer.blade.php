@@ -29,7 +29,11 @@
                                     <td>{{ $demand->satisfied}}</td>
                                     <td>
                                         {!! Form::open(['route' => ['aceptar',$demand->id], 'method' => 'get']) !!}
-                                        {!!   Form::submit('Aceptar', ['class'=> 'btn btn-warning'])!!}
+                                        @if($demand->accepted == null)
+                                            {!!   Form::submit('Aceptar', ['class'=> 'btn btn-success'])!!}
+                                        @else
+                                            {!!   Form::submit('Aceptar',  ['disabled', 'class'=> 'btn btn-outline-primary'])!!}
+                                        @endif
                                         {!! Form::close() !!}
                                     </td>
                                 </tr>

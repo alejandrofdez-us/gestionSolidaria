@@ -81,18 +81,13 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Gestión Solidaria
+                    <a href="{{ route('login') }}"><img src="gestionSolidariaLogo.png" title="Gestión Solidaria" alt="Logo de Gestión Solidaria"></a>
                 </div>
 
                 <div class="links">
-                    <a href="https://personal.us.es/afdez">Autor: Alejandro Fernández-Montes</a>
-                    <a href="https://laracasts.com">Codificación y Gestión de la Información Sanitaria</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <a href="https://personal.us.es/afdez" target="_blank">Autor: Alejandro Fernández-Montes</a>
+                    <a href="https://ev.us.es/webapps/blackboard/execute/modulepage/view?course_id=_34532_1&cmp_tab_id=_81279_1&editMode=true&mode=cpview" target="_blank">Codificación y Gestión de la Información Sanitaria</a>
+                    <a href="https://github.com/alejandrofdez-us/gestionSolidaria" target="_blank">Repositorio GitHub</a>
                 </div>
             </div>
         </div>

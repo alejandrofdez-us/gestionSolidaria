@@ -29,6 +29,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => 'App\Http\Middleware\PetitionerMiddleware'], function()
 {
     Route::get('/myDemands', 'DemandController@indexPetitioner')->name('myDemands');
+    Route::resource('demands', 'DemandController');
+
+    /*Route::post('/demands/create', 'DemandController@create')->name('demands.create');
+    Route::get('/demands/{id}/edit', 'DemandController@edit')->name('demands.edit');
+    Route::put('/demands/{id}', 'DemandController@update')->name('demands.update');
+    Route::delete('/demands', 'DemandController@destroy')->name('demands.destroy');*/
 
 });
 
@@ -40,4 +46,3 @@ Route::group(['middleware' => 'App\Http\Middleware\VolunteerMiddleware'], functi
 });
 
 // rutas sin restricciones
-Route::resource('demands', 'DemandController');
