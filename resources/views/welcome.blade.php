@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    <a href="{{ route('login') }}"><img src="gestionSolidariaLogo.png" title="Gestión Solidaria" alt="Logo de Gestión Solidaria"></a>
+                    <a href="{{ route('login') }}"><img src={{ asset('/images/gestionSolidariaLogo.png') }} title="Gestión Solidaria" alt="Logo de Gestión Solidaria"></a>
                 </div>
 
                 <div class="links">

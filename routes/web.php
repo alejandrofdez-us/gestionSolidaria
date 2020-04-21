@@ -30,6 +30,8 @@ Route::group(['middleware' => 'App\Http\Middleware\PetitionerMiddleware'], funct
 {
     Route::get('/myDemands', 'DemandController@indexPetitioner')->name('myDemands');
     Route::resource('demands', 'DemandController');
+    Route::get('/cancelar/{id}', 'DemandController@cancelar')->name('cancelar');
+    Route::get('/reactivar/{id}', 'DemandController@reactivar')->name('reactivar');
 
     /*Route::post('/demands/create', 'DemandController@create')->name('demands.create');
     Route::get('/demands/{id}/edit', 'DemandController@edit')->name('demands.edit');

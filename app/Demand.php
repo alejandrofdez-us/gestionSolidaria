@@ -13,13 +13,13 @@ class Demand extends Model
 
     public function petitionerUser()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User', 'petitioner_id');
     }
 
 
     public function volunteeringUser()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User','volunteer_id');
     }
 
 }

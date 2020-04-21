@@ -5,48 +5,34 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Citas</div>
+                    <div class="panel-heading">Demanda con fecha: {{$demanda->created_at}}</div>
 
                     <div class="panel-body">
-                        @include('flash::message')
-                        {!! Form::open(['route' => 'citas.create', 'method' => 'get']) !!}
-                        {!!   Form::submit('Crear cita', ['class'=> 'btn btn-primary'])!!}
-                        {!! Form::close() !!}
+                        <div class="row-cols-6"> <span>Tipo de demanda:</span> {{$demanda->demandType}}</div>
 
-                        <br><br>
-                        <table class="table table-striped table-bordered">
-                            <tr>
-                                <th>Fecha</th>
-                                <th>Medico</th>
-                                <th>Paciente</th>
-                                <th>Localizacion</th>
-                                <th colspan="2">Acciones</th>
-                            </tr>
+                        <div class="row-cols-6"> <span>Descripción:</span> {{$demanda->description}}</div>
 
-                            @foreach ($citas as $cita)
+                        <div class="row-cols-6"> <span>Fecha de creación:</span> {{$demanda->created_at}}</div>
 
+                        <div class="row-cols-6"> <span>Fecha límite de realización:</span> {{$demanda->validity}}</div>
 
-                                <tr>
-                                    <td>{{ $cita->fecha_hora }}</td>
-                                    <td>{{ $cita->medico->full_name }}</td>
-                                    <td>{{ $cita->paciente->full_name}}</td>
-                                    <td>{{ $cita->location->full_name}}</td>
-                                    <td>
-                                        {!! Form::open(['route' => ['citas.edit',$cita->id], 'method' => 'get']) !!}
-                                        {!!   Form::submit('Editar', ['class'=> 'btn btn-warning'])!!}
-                                        {!! Form::close() !!}
-                                    </td>
-                                    <td>
-                                        {!! Form::open(['route' => ['citas.destroy',$cita->id], 'method' => 'delete']) !!}
-                                        {!!   Form::submit('Borrar', ['class'=> 'btn btn-danger' ,'onclick' => 'if(!confirm("¿Está seguro?"))event.preventDefault();'])!!}
-                                        {!! Form::close() !!}
+                        <div class="row-cols-6"> <span>Fecha de aceptación:</span> {{$demanda->accepted}}</div>
 
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </table>
+                        <div class="row-cols-6"> <span>Fecha de realización:</span> {{$demanda->satisfied}}</div>
+                        @if($demanda->volunteeringUser !=null)
+                            <div class="row-cols-6"> <span>Voluntario que aceptó la demanda:</span> {{$demanda->volunteeringUser->name}}</div>
+                        @endif
+
+                        @if($demanda->cancelled !=null)
+                            <div class="row-cols-6"> <span>Fecha de cancelación:</span> {{$demanda->cancelled}}</div>
+                        @else
+                            {!! Form::open(['route' => ['cancelar',$demanda->id], 'method' => 'get']) !!}
+                            {!!   Form::submit('Cancelar', ['class'=> 'btn btn-warning'])!!}
+                            {!! Form::close() !!}
+                        @endif
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 @endsection

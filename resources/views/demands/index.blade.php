@@ -21,7 +21,7 @@
                                 <th>Fecha de caducidad</th>
                                 <th>Fecha de aceptación</th>
                                 <th>Fecha de realización</th>
-                                <th colspan="2">Acciones</th>
+                                <th colspan="3">Acciones</th>
                             </tr>
 
                             @foreach ($demands as $demand)
@@ -34,15 +34,28 @@
                                     <td>{{ $demand->accepted}}</td>
                                     <td>{{ $demand->satisfied}}</td>
                                     <td>
+                                        {!! Form::open(['route' => ['demands.show',$demand->id], 'method' => 'get']) !!}
+                                        {!!   Form::submit('Detalles', ['class'=> 'btn btn-outline-primary'])!!}
+                                        {!! Form::close() !!}
+
+                                    </td>
+                                    <td>
                                         {!! Form::open(['route' => ['demands.edit',$demand->id], 'method' => 'get']) !!}
                                         {!!   Form::submit('Editar', ['class'=> 'btn btn-warning'])!!}
                                         {!! Form::close() !!}
                                     </td>
                                     <td>
-                                        {!! Form::open(['route' => ['demands.destroy',$demand->id], 'method' => 'delete']) !!}
-                                        {!!   Form::submit('Borrar', ['class'=> 'btn btn-danger' ,'onclick' => 'if(!confirm("¿Está seguro?"))event.preventDefault();'])!!}
-                                        {!! Form::close() !!}
+                                        @if($demand->cancelled!=null)
+                                            {!! Form::open(['route' => ['reactivar',$demand->id], 'method' => 'get']) !!}
+                                            {!!   Form::submit('Reactivar', ['class'=> 'btn btn-success' ,'onclick' => 'if(!confirm("¿Está seguro que desea reactivarla?"))event.preventDefault();'])!!}
+                                            {!! Form::close() !!}
 
+                                        @else
+                                            {!! Form::open(['route' => ['cancelar',$demand->id], 'method' => 'get']) !!}
+                                            {!!   Form::submit('Cancelar', ['class'=> 'btn btn-danger' ,'onclick' => 'if(!confirm("¿Está seguro que desea cancelarla?"))event.preventDefault();'])!!}
+                                            {!! Form::close() !!}
+
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
@@ -51,4 +64,5 @@
                 </div>
             </div>
         </div>
+    </div>
 @endsection

@@ -58,6 +58,30 @@ class DemandController extends Controller
         return redirect()->route('myCPDemands');
     }
 
+    public function cancelar($id){
+
+        // Editar la demanda para incluir la fecha de aceptación y el voluntario que la ha aceptado.
+
+        $demanda = Demand::find($id);
+        $demanda->cancelled = Carbon::now();
+        $demanda->save();
+
+        flash('Demanda cancelada');
+        return redirect()->route('myDemands');
+    }
+
+    public function reactivar($id){
+
+        // Editar la demanda para incluir la fecha de aceptación y el voluntario que la ha aceptado.
+
+        $demanda = Demand::find($id);
+        $demanda->cancelled = null;
+        $demanda->save();
+
+        flash('Demanda reactivada');
+        return redirect()->route('myDemands');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
