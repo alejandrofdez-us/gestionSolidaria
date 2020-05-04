@@ -33,12 +33,13 @@ class DemandController extends Controller
         return view('demands.index',['demands'=>$demands]);
     }
 
-    public function indexVolunteer()
+    public function indexVolunteer(Request $request)
     {
         $demands = DB::table('demands')
             ->join('users', 'users.id', '=', 'demands.petitioner_id')
             ->select('users.cp', 'demands.*')
             ->where('users.cp','=',Auth::user()->cp)
+            ->where('demands.description','LIKE','%'.$request->get("query").'%')
             ->get();
 
 
